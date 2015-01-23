@@ -1,0 +1,18 @@
+''' This isn't python code.  It's for use with scrapy, a python thing.  Download it, open the shell as
+    below, run the code in the shell, and it scrapes the postcodes in london and pickles them.
+
+	Works as of 10th Dec 2014, people change websites ''
+
+scrapy shell "http://www.doogal.co.uk/london_postcodes.php"
+
+for_clean=response.xpath("//a[contains(@href,'UKPostcodes.php?')]/text()").extract()
+
+london_postcodes = []
+
+import re
+for a_i in for_clean:
+    london_postcodes.append(re.search('(?:(?!\:).)*',a_i).group(0))
+    
+import pickle
+with open('../data/pickled/postcodes.p','w+') as f:
+    pickle.dump(london_postcodes,f)
