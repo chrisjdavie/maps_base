@@ -1,4 +1,7 @@
 '''
+This takes all the postcodes from the UK and extracts the ones that 
+are in london into a new folder
+
 Created on 28 Oct 2014
 
 @author: chris
