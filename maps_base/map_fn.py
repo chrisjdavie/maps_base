@@ -41,15 +41,41 @@ def main():
     for pc in postcodes:
         lcn_count[pc] = random.randint(0,100)
     
+    ''' This is an example colourmap that adds transparency.
+        It can be used to overlay this onto a real map of London,
+        which can be a good visual aid for presentations.
+    '''
+    cdict1 = {'red':   ((0.0, 1.0, 1.0),
+                        (0.1, 60.0/255, 60.0/255),
+                        (1.0, 0.0, 0.0)),
+
+         'green': ((0.0, 1.0, 1.0),
+                   (0.1, 207.0/255, 207.0/255),
+                   (1.0, 0.0, 0.0)),
+
+         'blue':  ((0.0, 1.0, 1.0),
+                   (0.1, 66.0/255, 66.0/255),
+                   (1.0, 0.0, 0.0)),
+               
+        'alpha': ((0.0, 0.0, 0.0),
+                  (0.1, 0.7, 0.7),
+                  (1.0, 1.0, 1.0))
+        }
     
-    draw_london_map(lcn_count,'test')
+    from matplotlib.colors import LinearSegmentedColormap
+    
+    blue_red1 = LinearSegmentedColormap('BlueRed1', cdict1)
+    
+    pl.register_cmap(cmap=blue_red1)
+    
+    draw_london_map(lcn_count,'test',cmap='BlueRed1')
     
 #     import matplotlib.pyplot as pl
     pl.axis('off')
     pl.show()    
     
     
-
+    
 def draw_london_map(locn_count,cbar_label,cmap='gist_heat_r'):
     
     ''' locn_count, dict, { postcode_str, counts_int } '''
