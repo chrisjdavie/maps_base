@@ -5,3 +5,5 @@ This is an example of my maps plotting routine.  The data prep stuff is in
 explains how to get the data that it needs to point to.
 
 Then 'maps_base/map_fn.py' can be run as an example of how this all works.
+
+Copyright (c) 2015 Christopher Joseph Davie, MIT License
